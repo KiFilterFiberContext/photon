@@ -49,6 +49,7 @@ void phsdk_libmain( void )
 - GOT/PLT hooking
 - Hardware Breakpoints 
 - AArch64 support
+- Bug Fixing
 
 ## License
 MIT
