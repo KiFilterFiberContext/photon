@@ -2,9 +2,10 @@
 Photon is a lightweight hooking engine for the ARM architecture
 
 ## Features
-The engine supports hooking at the instruction level and allows for modification and inspection of register content in logcat.  
+The engine supports hooking at the instruction level and allows for modification and inspection of register content in logcat. 
 - Instruction Hooking (`softbp::hook_with_entry`)
 - Instruction Monitoring (`softbp::midhook_with_entry`)
+- LogCat printing (`utils::print` and `utils::debug_print`)
 
 ## Implementation
 
