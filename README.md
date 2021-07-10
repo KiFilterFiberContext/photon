@@ -8,7 +8,10 @@ The engine supports hooking at the instruction level and allows for modification
 - LogCat printing (`utils::print` and `utils::debug_print`)
 
 ## Implementation
-As opposed to trampoline hooking engines, the engine operates by overwriting instructions with the `UDF #1` trap instruction.  This instruction raises a `SIGTRAP` signal and redirects control flow to any registered signal handlers.  When initializing the engine a signal handler is registered with `softbp::setup` with an option to provide a custom signal handler and to catch `SIGSEGV` signals.  It also spawns a watchdog thread for reapplying the trap instruction after dispatch.  By default, it will register the signal handler for `SIGILL` and `SIGTRAP` signals.  When registering a hook it will retain the overwritten instruction bytes and save the hook routine.  When the signal handler is dispatched to, it will lookup the global list and redirect the instruction pointer to the hook routine and reapply the original bytes.  
+As opposed to trampoline hooking engines, the engine operates by overwriting instructions with the `UDF #1` trap instruction.  This instruction raises a `SIGTRAP` signal and redirects control flow to any registered signal handlers.  When initializing the engine a signal handler is registered with `softbp::setup` with an option to provide a custom signal handler and to catch `SIGSEGV` signals.  It also spawns a watchdog thread for reapplying the trap instruction after dispatch. 
+
+By default, it will register the signal handler for `SIGILL` and `SIGTRAP` signals.  When registering a hook it will retain the overwritten instruction bytes and save the hook routine.  When the signal handler is dispatched to, it will lookup the global list and redirect the instruction pointer to the hook routine and reapply the original bytes.  
+
 
 ## Example
 ```cpp
