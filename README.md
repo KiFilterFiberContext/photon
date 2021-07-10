@@ -31,8 +31,6 @@ USING_NS_CC_EXT;
 
 bool ex_callback( LoadingLayer* p, bool useDefault )
 {
-    auto gm = GameManager::sharedState( );
-
     debug_print("called from %s", __FUNCTION__ );
     return p->init( useDefault );
 }
@@ -41,6 +39,10 @@ __attribute__((constructor))
 void phsdk_libmain( void )
 {
     softbp::setup( softbp::sig_handler, false );
+    
+    //
+    // error checking is recommended
+    //
     softbp::hook_with_entry( "libcocos2dcpp.so", "_ZN12LoadingLayer4initEb", (void*) ex_callback );
 }
 ```
